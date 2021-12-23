@@ -1,6 +1,8 @@
 package com.example.smartshopping.controller
 
 import com.example.smartshopping.common.ApiResponse
+import com.example.smartshopping.domain.auth.signin.SigninRequest
+import com.example.smartshopping.domain.auth.signin.SigninService
 import com.example.smartshopping.domain.auth.signup.SignupRequest
 import com.example.smartshopping.domain.auth.signup.SignupService
 import com.example.smartshopping.domain.user.UserService
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1")
 class UserApiController @Autowired constructor(
     private val signupService: SignupService,
-    private val userService: UserService
+    private val signinService: SigninService
 ){
     @PostMapping("/users")
     fun signup(@RequestBody signupRequest: SignupRequest)=
@@ -26,4 +28,7 @@ class UserApiController @Autowired constructor(
     fun validateNickName(@RequestParam nickName : String) =
         ApiResponse.ok(signupService.checkDuplicatesNickName(nickName))
 
+    @PostMapping("/signin")
+    fun signin(@RequestBody signinRequest: SigninRequest)=
+        ApiResponse.ok(signinService.signin(signinRequest))
 }
