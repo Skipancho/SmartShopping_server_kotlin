@@ -45,7 +45,7 @@ object JWTUtil {
             .build()
             .verify(token)
 
-    fun extractEmail(jwt : DecodedJWT):String =
+    fun extractUserId(jwt : DecodedJWT):String =
         jwt.getClaim(JWTClaims.USER_ID).asString()
 
     object JWTClaims{
