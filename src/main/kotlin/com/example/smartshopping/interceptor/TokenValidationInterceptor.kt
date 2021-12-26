@@ -26,6 +26,7 @@ class TokenValidationInterceptor @Autowired constructor(
 
         if (authHeader.isNullOrBlank()) {
             val pair = request.method to request.servletPath
+
             if (!DEFAULT_ALLOWED_API_URLS.contains(pair)) {
                 response.sendError(401)
                 return false

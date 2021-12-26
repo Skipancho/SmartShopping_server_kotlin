@@ -10,6 +10,8 @@ object JWTUtil {
     private const val SUBJECT = "Auth"
     private const val EXPIRE_TIME = 60L * 60 * 2 * 1000 //2시간
     private const val REFRESH_EXPIRE_TIME = 60L * 60 * 24 * 30 * 1000 //30일
+   // private const val EXPIRE_TIME = 60L * 1000 //1분
+    //private const val REFRESH_EXPIRE_TIME = 60L * 3 * 1000 //3분
 
     private val SECRET = "1q2w3e4r"
     private val algorithm : Algorithm = Algorithm.HMAC256(SECRET)
