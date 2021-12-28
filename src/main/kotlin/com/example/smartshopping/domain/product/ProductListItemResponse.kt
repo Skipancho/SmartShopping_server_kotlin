@@ -10,7 +10,7 @@ data class ProductListItemResponse(
     val imagePaths : List<String>
 )
 
-fun Product.toProductListItemResponse() = no?.let {
+fun Product.toProductListItemResponse() = id?.let {
     ProductListItemResponse(
         it, name, description, price, status.name, userCode, images.map{it.toThumbs()}
     )

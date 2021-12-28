@@ -12,7 +12,7 @@ data class ProductResponse(
     val imagePaths : List<String>
 )
 
-fun Product.toProductResponse() = no?.let {
+fun Product.toProductResponse() = id?.let {
     ProductResponse(
         it, name, description, price, status.name, userCode,
         images.map { it.path }

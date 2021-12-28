@@ -7,7 +7,7 @@ import javax.persistence.*
 abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var no : Long? = null
+    var id : Long? = null
 
     var createdAt: Date? = null
     var updatedAt: Date? = null

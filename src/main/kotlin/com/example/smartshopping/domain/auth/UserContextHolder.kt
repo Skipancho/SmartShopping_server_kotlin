@@ -19,7 +19,7 @@ class UserContextHolder @Autowired constructor(
     fun set(userId : String) = userRepository
         .findByUserId(userId)?.let { user ->
             this.userHolder.get().apply {
-                this.userCode = user.no
+                this.userCode = user.id
                 this.userId = user.userId
                 this.nickName = user.nickName
             }.run(userHolder::set)

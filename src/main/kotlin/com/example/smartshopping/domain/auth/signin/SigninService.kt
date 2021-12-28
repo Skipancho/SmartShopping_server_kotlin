@@ -32,12 +32,12 @@ class SigninService @Autowired constructor(
         hashed: String
     ) = BCrypt.checkpw(plain,hashed).not()
 
-    private fun responseWithTokens(user: User) = user.no?.let{
+    private fun responseWithTokens(user: User) = user.id?.let{
             userCode -> SigninResponse(
         JWTUtil.createToken(user.userId),
         JWTUtil.createRefreshToken(user.userId),
         user.nickName,
         userCode
     )
-    } ?: throw IllegalStateException("user.no 없음.")
+    } ?: throw IllegalStateException("userCode 없음.")
 }
