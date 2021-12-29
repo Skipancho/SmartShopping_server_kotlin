@@ -40,6 +40,14 @@ class ProductService @Autowired constructor(
                 .findByCategoryIdAndIdGreaterThanOrderByIdDesc(
                     categoryId,productId,pageable
                 )
+            DEFAULT_SEARCH -> productRepository
+                .findByIdLessThanOrderByIdDesc(
+                    productId,pageable
+                )
+            PREV_DEFAULT_SEARCH -> productRepository
+                .findByIdGreaterThanOrderByIdDesc(
+                    productId,pageable
+                )
             else -> throw IllegalArgumentException("상품 검색 조건 오류")
 
         }
@@ -58,6 +66,8 @@ class ProductService @Autowired constructor(
         val PREV_IN_SEARCH = ProductSearchCondition(false, "prev", true)
         val NEXT_IN_CATEGORY = ProductSearchCondition(true, "next")
         val PREV_IN_CATEGORY = ProductSearchCondition(true, "prev")
+        val DEFAULT_SEARCH = ProductSearchCondition(false, "next", false)
+        val PREV_DEFAULT_SEARCH = ProductSearchCondition(false, "prev", false)
     }
 
 }

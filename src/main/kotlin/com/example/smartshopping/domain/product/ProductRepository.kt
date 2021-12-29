@@ -23,4 +23,12 @@ interface ProductRepository : JpaRepository<Product, Long> {
     fun findByIdLessThanAndNameLikeOrderByIdDesc(
         id : Long, keyword : String, pageable: Pageable
     ): List<Product>
+
+    fun findByIdLessThanOrderByIdDesc(
+        id: Long, pageable: Pageable
+    ):List<Product>
+
+    fun findByIdGreaterThanOrderByIdDesc(
+        id: Long, pageable: Pageable
+    ):List<Product>
 }
