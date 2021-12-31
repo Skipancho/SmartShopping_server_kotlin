@@ -43,6 +43,9 @@ dependencies {
     //Hash 암호화
     implementation 'org.mindrot:jbcrypt:0.4'
 
+    //썸네일 제작
+    implementation 'net.coobird:thumbnailator:0.4.8'
+
     //JAXB - 자바11 부터 JPA 사용시 필요
     implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.3'
