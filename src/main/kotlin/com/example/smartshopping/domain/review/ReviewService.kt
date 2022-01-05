@@ -1,12 +1,17 @@
 package com.example.smartshopping.domain.review
 
+import com.example.smartshopping.common.SmartShoppingException
+import com.example.smartshopping.domain.auth.UserContextHolder
+import com.example.smartshopping.domain.product.ProductService
+import com.example.smartshopping.domain.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
 class ReviewService @Autowired constructor(
-    private val reviewRepository: ReviewRepository
+    private val reviewRepository: ReviewRepository,
+    private val userContextHolder: UserContextHolder
 ) {
 
     fun getReviews(
@@ -24,6 +29,13 @@ class ReviewService @Autowired constructor(
 
     fun get(id : Long) = reviewRepository.findByIdOrNull(id)
 
+    fun register(request: ReviewRequest) =
+        userContextHolder.userCode?.let { userCode ->
+            request.toReview(userCode)
+                .run(::save)
+        } ?: throw SmartShoppingException("사용자 정보 없음")
+
+    private fun save(review: Review) = reviewRepository.save(review)
 
     data class ReviewSearchCondition(
         val userCodeIsNotNull : Boolean,
@@ -35,3 +47,7 @@ class ReviewService @Autowired constructor(
         val PRODUCT_ID_SEARCH = ReviewSearchCondition(false, true)
     }
 }
+
+private fun ReviewRequest.toReview(
+    userCode: Long
+) = Review(userCode, productId, score, reviewText)

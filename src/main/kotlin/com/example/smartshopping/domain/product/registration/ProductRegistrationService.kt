@@ -34,8 +34,8 @@ class ProductRegistrationService @Autowired constructor(
 
 private fun ProductRegistrationRequest.validateRequest() = when{
     name.length !in 1..40 ||
-            imageIds.size !in 1..4 ||
-            imageIds.filterNotNull().isEmpty() ||
+            //imageIds.size !in 1..4 ||
+            //imageIds.filterNotNull().isEmpty() ||
             description.length !in 1..500 ||
             price <= 0 -> throw SmartShoppingException("올바르지 않은 상품 정보입니다.")
     else -> {
