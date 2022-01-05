@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class ReviewService @Autowired constructor(
+    private val userService: UserService,
+    private val productService: ProductService,
     private val reviewRepository: ReviewRepository,
     private val userContextHolder: UserContextHolder
 ) {
@@ -17,14 +19,38 @@ class ReviewService @Autowired constructor(
     fun getReviews(
         userCode : Long?,
         productId : Long?
-    ): List<Review> {
+    ): List<ReviewResponse> {
         val condition = ReviewSearchCondition(userCode != null, productId != null)
-
-        return when(condition){
+        val reviews = when(condition){
             USER_CODE_SEARCH -> reviewRepository.findByUserCodeOrderByIdDesc(userCode)
             PRODUCT_ID_SEARCH -> reviewRepository.findByProductIdOrderByIdDesc(productId)
             else ->throw IllegalArgumentException("리뷰 검색 조건 오류")
         }
+
+        val responses = ArrayList<ReviewResponse>()
+
+        for (review in reviews){
+            val nickName = review.userCode?.let {
+                userService.find(it)?.nickName
+            } ?: ""
+            val productname = review.productId?.let{
+                productService.get(it)?.name
+            } ?: ""
+
+            responses.add(ReviewResponse(nickName,productname,review.score,review.reviewText,review.updatedAt!!))
+        }
+        return responses
+    }
+
+    fun Review.toReviewResponse(): ReviewResponse {
+        val nickName = userCode?.let {
+            userService.find(it)?.nickName
+        } ?: throw SmartShoppingException("사용자 정보 없음")
+        val productName = productId?.let {
+            productService.get(it)?.name
+        } ?: throw SmartShoppingException("상품 정보 없음")
+
+        return ReviewResponse(nickName,productName,score,reviewText,updatedAt!!)
     }
 
     fun get(id : Long) = reviewRepository.findByIdOrNull(id)
