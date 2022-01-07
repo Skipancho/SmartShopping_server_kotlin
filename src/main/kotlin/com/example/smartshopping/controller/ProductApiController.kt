@@ -45,7 +45,7 @@ class ProductApiController @Autowired constructor(
         ApiResponse.ok(it.toProductResponse())
     } ?: throw SmartShoppingException("상품 정보를 찾을 수 없습니다.")
 
-    @GetMapping("/review")
+    @GetMapping("/reviews")
     fun getReview(
         @RequestParam(required = false) userCode : Long?,
         @RequestParam(required = false) productId : Long?
