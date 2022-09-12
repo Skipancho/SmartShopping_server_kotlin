@@ -1,10 +1,9 @@
 package com.example.smartshopping.domain.product.registration
 
 import com.example.smartshopping.common.SmartShoppingException
-import com.example.smartshopping.domain.product.ProductImage
-import com.example.smartshopping.domain.product.ProductImageRepository
+import com.example.smartshopping.domain.product.image.ProductImage
+import com.example.smartshopping.domain.product.image.ProductImageRepository
 import net.coobird.thumbnailator.Thumbnails
-import net.coobird.thumbnailator.geometry.Position
 import net.coobird.thumbnailator.geometry.Positions
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -56,7 +55,7 @@ class ProductImageService @Autowired constructor(
         return filePath
     }
 
-    private fun saveImageData(filePath : String) : ProductImage{
+    private fun saveImageData(filePath : String) : ProductImage {
         val productImage = ProductImage(filePath)
         return productImageRepository.save(productImage)
     }

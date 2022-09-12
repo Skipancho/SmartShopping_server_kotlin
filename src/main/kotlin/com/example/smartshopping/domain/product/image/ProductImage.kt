@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.domain.product.image
 
 import com.example.smartshopping.domain.jpa.BaseEntity
 import javax.persistence.Entity

@@ -10,16 +10,16 @@ object JWTUtil {
     private const val SUBJECT = "Auth"
     private const val EXPIRE_TIME = 60L * 60 * 2 * 1000 //2시간
     private const val REFRESH_EXPIRE_TIME = 60L * 60 * 24 * 30 * 1000 //30일
-   // private const val EXPIRE_TIME = 60L * 1000 //1분
+    //private const val EXPIRE_TIME = 60L * 1000 //1분
     //private const val REFRESH_EXPIRE_TIME = 60L * 3 * 1000 //3분
 
     private val SECRET = "1q2w3e4r"
-    private val algorithm : Algorithm = Algorithm.HMAC256(SECRET)
+    private val algorithm: Algorithm = Algorithm.HMAC256(SECRET)
 
     private val refreshSecret = "r4e3w2q1"
-    private val refreshAlgorithm : Algorithm = Algorithm.HMAC256(refreshSecret)
+    private val refreshAlgorithm: Algorithm = Algorithm.HMAC256(refreshSecret)
 
-    fun createToken(userId : String) = JWT.create()
+    fun createToken(userId: String): String = JWT.create()
         .withIssuer(ISSUER)
         .withSubject(SUBJECT)
         .withIssuedAt(Date())
@@ -27,7 +27,7 @@ object JWTUtil {
         .withClaim(JWTClaims.USER_ID, userId)
         .sign(algorithm)
 
-    fun createRefreshToken(userId : String) = JWT.create()
+    fun createRefreshToken(userId: String): String = JWT.create()
         .withIssuer(ISSUER)
         .withSubject(SUBJECT)
         .withIssuedAt(Date())
@@ -35,23 +35,22 @@ object JWTUtil {
         .withClaim(JWTClaims.USER_ID, userId)
         .sign(refreshAlgorithm)
 
-    fun verify(token : String) : DecodedJWT =
+    fun verify(token: String): DecodedJWT =
         JWT.require(algorithm)
             .withIssuer(ISSUER)
             .build()
             .verify(token)
 
-    fun verifyRefresh(token : String) : DecodedJWT =
+    fun verifyRefresh(token: String): DecodedJWT =
         JWT.require(refreshAlgorithm)
             .withIssuer(ISSUER)
             .build()
             .verify(token)
 
-    fun extractUserId(jwt : DecodedJWT):String =
+    fun extractUserId(jwt: DecodedJWT): String =
         jwt.getClaim(JWTClaims.USER_ID).asString()
 
-    object JWTClaims{
+    object JWTClaims {
         const val USER_ID = "userId"
     }
-
 }

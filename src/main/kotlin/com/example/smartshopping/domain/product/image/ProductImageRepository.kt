@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.domain.product.image
 
 import org.springframework.data.jpa.repository.JpaRepository
 
