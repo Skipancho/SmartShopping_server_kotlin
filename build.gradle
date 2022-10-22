@@ -24,20 +24,20 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.20'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 
     //스프링 부트
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.3'
-    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.7.10'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.4'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.7.20'
 
     //jwt 토큰
     implementation 'com.auth0:java-jwt:4.0.0'
 
     //DB 연동
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.3'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.4'
     runtimeOnly 'mysql:mysql-connector-java:8.0.30'
 
     //Hash 암호화
