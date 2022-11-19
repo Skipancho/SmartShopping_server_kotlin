@@ -4,6 +4,7 @@ import com.example.smartshopping.common.ApiResponse
 import com.example.smartshopping.common.SmartShoppingException
 import com.example.smartshopping.domain.product.Product
 import com.example.smartshopping.domain.product.ProductService
+import com.example.smartshopping.domain.product.registration.ProductImageService
 import com.example.smartshopping.domain.product.registration.ProductRegistrationRequest
 import com.example.smartshopping.domain.product.registration.ProductRegistrationService
 import com.example.smartshopping.domain.product.toProductListItemResponse
@@ -12,12 +13,14 @@ import com.example.smartshopping.domain.review.ReviewRequest
 import com.example.smartshopping.domain.review.ReviewService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/api/v1")
 class ProductApiController @Autowired constructor(
     private val productService : ProductService,
     private val productRegistrationService: ProductRegistrationService,
+    private val productImageService: ProductImageService,
     private val reviewService: ReviewService
 ){
     @GetMapping("/products")
@@ -39,6 +42,12 @@ class ProductApiController @Autowired constructor(
         productRegistrationService.register(request)
     )
 
+    @PostMapping("/image")
+    fun uploadImage(
+        @RequestBody imageFile : MultipartFile
+    ) = ApiResponse.ok(
+        productImageService.uploadImage(imageFile)
+    )
 
     @GetMapping("/products/{id}")
     fun get(@PathVariable id : Long) = productService.get(id)?.let{
