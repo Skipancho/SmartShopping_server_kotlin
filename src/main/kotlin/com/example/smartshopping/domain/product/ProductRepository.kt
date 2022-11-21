@@ -31,4 +31,8 @@ interface ProductRepository : JpaRepository<Product, Long> {
     fun findByIdGreaterThanOrderByIdDesc(
         id: Long, pageable: Pageable
     ):List<Product>
+
+    fun findByBarcode(
+        barcode: Long
+    ):List<Product>
 }

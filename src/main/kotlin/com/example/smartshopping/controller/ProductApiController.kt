@@ -54,6 +54,11 @@ class ProductApiController @Autowired constructor(
         ApiResponse.ok(it.toProductResponse())
     } ?: throw SmartShoppingException("상품 정보를 찾을 수 없습니다.")
 
+    @GetMapping("/product/{barcode}")
+    fun getProductByBarcode(@PathVariable barcode : Long) = productService.getByBarcode(barcode)?.let {
+        ApiResponse.ok(it.toProductResponse())
+    } ?: throw SmartShoppingException("상품 정보를 찾을 수 없습니다.")
+
     @GetMapping("/reviews")
     fun getReview(
         @RequestParam(required = false) userCode : Long?,

@@ -46,4 +46,4 @@ private fun ProductRegistrationRequest.validateRequest() = when {
 private fun ProductRegistrationRequest.toProduct(
     images: MutableList<ProductImage>,
     userCode: Long
-) = Product(name, description, nPrice, sPrice, categoryId, ProductStatus.SELLABLE, images, userCode)
+) = Product(name, description, nPrice, sPrice, categoryId, ProductStatus.SELLABLE, images, userCode,barcode)
