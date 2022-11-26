@@ -18,6 +18,7 @@ class Product(
     @OneToMany
     @JoinColumn(name = "productId")
     var images : MutableList<ProductImage>,
-    var userCode : Long
+    var userCode : Long,
+    var barcode : Long
 ): BaseEntity() {
 }
