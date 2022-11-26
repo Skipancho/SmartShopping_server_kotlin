@@ -21,4 +21,15 @@ class Product(
     var userCode : Long,
     var barcode : Long
 ): BaseEntity() {
+    companion object {
+        val categoryMap = hashMapOf<Int, String>(
+            0 to "0번 항목",
+            1 to "1번 항목",
+            2 to "2번 항목",
+            3 to "3번 항목",
+            4 to "4번 항목",
+            5 to "5번 항목",
+            6 to "6번 항목",
+        )
+    }
 }
