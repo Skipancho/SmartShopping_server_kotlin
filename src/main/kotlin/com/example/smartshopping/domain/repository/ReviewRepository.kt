@@ -1,5 +1,6 @@
-package com.example.smartshopping.domain.review
+package com.example.smartshopping.domain.repository
 
+import com.example.smartshopping.entity.Review
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface ReviewRepository : JpaRepository<Review, Long>{

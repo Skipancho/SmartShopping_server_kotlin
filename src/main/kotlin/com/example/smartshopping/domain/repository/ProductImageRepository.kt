@@ -1,5 +1,6 @@
-package com.example.smartshopping.domain.product.image
+package com.example.smartshopping.domain.repository
 
+import com.example.smartshopping.entity.ProductImage
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface ProductImageRepository : JpaRepository<ProductImage, Long>{

@@ -1,5 +1,6 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.domain.repository
 
+import com.example.smartshopping.entity.Product
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 
