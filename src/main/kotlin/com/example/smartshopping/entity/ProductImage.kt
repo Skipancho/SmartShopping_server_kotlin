@@ -1,6 +1,6 @@
-package com.example.smartshopping.domain.product.image
+package com.example.smartshopping.entity
 
-import com.example.smartshopping.domain.jpa.BaseEntity
+import com.example.smartshopping.entity.base.BaseEntity
 import javax.persistence.Entity
 
 @Entity(name = "product_image")

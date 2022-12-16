@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.entity.base
 
 enum class ProductStatus (private val status: String) {
     SELLABLE("판매중"),

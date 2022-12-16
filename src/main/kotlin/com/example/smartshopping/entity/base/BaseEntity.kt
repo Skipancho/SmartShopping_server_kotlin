@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.jpa
+package com.example.smartshopping.entity.base
 
 import java.util.*
 import javax.persistence.*

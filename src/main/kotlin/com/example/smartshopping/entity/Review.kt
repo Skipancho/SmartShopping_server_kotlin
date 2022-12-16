@@ -1,6 +1,6 @@
-package com.example.smartshopping.domain.review
+package com.example.smartshopping.entity
 
-import com.example.smartshopping.domain.jpa.BaseEntity
+import com.example.smartshopping.entity.base.BaseEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 

@@ -1,7 +1,7 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.entity
 
-import com.example.smartshopping.domain.jpa.BaseEntity
-import com.example.smartshopping.domain.product.image.ProductImage
+import com.example.smartshopping.entity.base.ProductStatus
+import com.example.smartshopping.entity.base.BaseEntity
 import javax.persistence.*
 
 @Entity(name = "product")
