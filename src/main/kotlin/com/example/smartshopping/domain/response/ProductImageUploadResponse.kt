@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.product.registration
+package com.example.smartshopping.domain.response
 
 data class ProductImageUploadResponse(
     val productImageId : Long,

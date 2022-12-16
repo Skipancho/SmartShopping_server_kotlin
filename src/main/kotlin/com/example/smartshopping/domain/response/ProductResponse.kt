@@ -1,6 +1,7 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.domain.response
 
 import com.example.smartshopping.common.SmartShoppingException
+import com.example.smartshopping.entity.Product
 
 data class ProductResponse(
     val id: Long,

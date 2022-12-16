@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.auth.signin
+package com.example.smartshopping.domain.response
 
 data class SigninResponse(
     val token : String,

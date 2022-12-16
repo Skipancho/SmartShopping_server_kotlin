@@ -1,6 +1,7 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.domain.response
 
-import com.example.smartshopping.domain.product.image.ProductImage
+import com.example.smartshopping.entity.Product
+import com.example.smartshopping.entity.ProductImage
 
 data class ProductListItemResponse(
     val id: Long,
