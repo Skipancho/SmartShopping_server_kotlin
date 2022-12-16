@@ -1,10 +1,10 @@
-package com.example.smartshopping.controller
+package com.example.smartshopping.presentation.controller
 
 import com.example.smartshopping.common.ApiResponse
-import com.example.smartshopping.domain.purchase.PurchaseRecord
 import com.example.smartshopping.domain.purchase.PurchaseRequest
 import com.example.smartshopping.domain.purchase.PurchaseService
 import com.example.smartshopping.domain.purchase.toPurchaseResponse
+import com.example.smartshopping.entity.PurchaseRecord
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 

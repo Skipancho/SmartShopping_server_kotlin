@@ -1,13 +1,11 @@
-package com.example.smartshopping.controller
+package com.example.smartshopping.presentation.controller
 
 import com.example.smartshopping.common.ApiResponse
 import com.example.smartshopping.domain.auth.signin.SigninRequest
 import com.example.smartshopping.domain.auth.signin.SigninService
 import com.example.smartshopping.domain.auth.signup.SignupRequest
 import com.example.smartshopping.domain.auth.signup.SignupService
-import com.example.smartshopping.domain.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.repository.query.Param
 import org.springframework.web.bind.annotation.*
 
 @RestController

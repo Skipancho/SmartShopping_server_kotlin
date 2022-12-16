@@ -1,8 +1,7 @@
-package com.example.smartshopping.controller
+package com.example.smartshopping.presentation.controller
 
 import com.example.smartshopping.common.ApiResponse
 import com.example.smartshopping.common.SmartShoppingException
-import com.example.smartshopping.domain.product.Product
 import com.example.smartshopping.domain.product.ProductService
 import com.example.smartshopping.domain.product.registration.ProductImageService
 import com.example.smartshopping.domain.product.registration.ProductRegistrationRequest
@@ -11,6 +10,7 @@ import com.example.smartshopping.domain.product.toProductListItemResponse
 import com.example.smartshopping.domain.product.toProductResponse
 import com.example.smartshopping.domain.review.ReviewRequest
 import com.example.smartshopping.domain.review.ReviewService
+import com.example.smartshopping.entity.Product
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile

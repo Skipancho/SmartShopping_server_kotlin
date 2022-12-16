@@ -1,4 +1,4 @@
-package com.example.smartshopping.interceptor
+package com.example.smartshopping.presentation.interceptor
 
 import com.example.smartshopping.domain.auth.JWTUtil
 import com.example.smartshopping.domain.auth.UserContextHolder

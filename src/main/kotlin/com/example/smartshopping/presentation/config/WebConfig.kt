@@ -1,6 +1,6 @@
-package com.example.smartshopping.config
+package com.example.smartshopping.presentation.config
 
-import com.example.smartshopping.interceptor.TokenValidationInterceptor
+import com.example.smartshopping.presentation.interceptor.TokenValidationInterceptor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry

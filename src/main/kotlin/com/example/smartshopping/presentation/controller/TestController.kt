@@ -1,4 +1,4 @@
-package com.example.smartshopping.controller
+package com.example.smartshopping.presentation.controller
 
 import com.example.smartshopping.common.ApiResponse
 import org.springframework.web.bind.annotation.GetMapping

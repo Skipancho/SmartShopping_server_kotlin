@@ -1,9 +1,9 @@
-package com.example.smartshopping.controller
+package com.example.smartshopping.presentation.controller
 
 import com.example.smartshopping.common.ApiResponse
 import com.example.smartshopping.domain.auth.JWTUtil
 import com.example.smartshopping.domain.auth.UserContextHolder
-import com.example.smartshopping.interceptor.TokenValidationInterceptor
+import com.example.smartshopping.presentation.interceptor.TokenValidationInterceptor
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
