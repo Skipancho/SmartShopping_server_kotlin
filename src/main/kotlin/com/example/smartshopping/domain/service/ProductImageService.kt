@@ -1,8 +1,9 @@
-package com.example.smartshopping.domain.product.registration
+package com.example.smartshopping.domain.service
 
 import com.example.smartshopping.common.SmartShoppingException
-import com.example.smartshopping.domain.product.image.ProductImage
-import com.example.smartshopping.domain.product.image.ProductImageRepository
+import com.example.smartshopping.domain.repository.ProductImageRepository
+import com.example.smartshopping.domain.response.ProductImageUploadResponse
+import com.example.smartshopping.entity.ProductImage
 import net.coobird.thumbnailator.Thumbnails
 import net.coobird.thumbnailator.geometry.Positions
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +21,7 @@ class ProductImageService @Autowired constructor(
     @Value("\${smartshopping.file-upload.default-dir}")
     var uploadPath : String? = ""
 
-    fun uploadImage(image: MultipartFile) : ProductImageUploadResponse{
+    fun uploadImage(image: MultipartFile) : ProductImageUploadResponse {
         val filePath = saveImageFile(image)
         val productImage = saveImageData(filePath)
 

@@ -1,10 +1,13 @@
-package com.example.smartshopping.domain.product.registration
+package com.example.smartshopping.domain.service
 
 import com.example.smartshopping.common.SmartShoppingException
 import com.example.smartshopping.domain.auth.UserContextHolder
-import com.example.smartshopping.domain.product.*
-import com.example.smartshopping.domain.product.image.ProductImage
-import com.example.smartshopping.domain.product.image.ProductImageRepository
+import com.example.smartshopping.domain.repository.ProductImageRepository
+import com.example.smartshopping.domain.repository.ProductRepository
+import com.example.smartshopping.domain.request.ProductRegistrationRequest
+import com.example.smartshopping.entity.Product
+import com.example.smartshopping.entity.ProductImage
+import com.example.smartshopping.entity.base.ProductStatus
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

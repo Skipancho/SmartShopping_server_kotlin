@@ -1,9 +1,11 @@
-package com.example.smartshopping.domain.review
+package com.example.smartshopping.domain.service
 
 import com.example.smartshopping.common.SmartShoppingException
 import com.example.smartshopping.domain.auth.UserContextHolder
-import com.example.smartshopping.domain.product.ProductService
-import com.example.smartshopping.domain.user.UserService
+import com.example.smartshopping.domain.repository.ReviewRepository
+import com.example.smartshopping.domain.request.ReviewRequest
+import com.example.smartshopping.domain.response.ReviewResponse
+import com.example.smartshopping.entity.Review
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service

@@ -1,5 +1,7 @@
-package com.example.smartshopping.domain.product
+package com.example.smartshopping.domain.service
 
+import com.example.smartshopping.domain.repository.ProductRepository
+import com.example.smartshopping.entity.Product
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull

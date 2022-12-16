@@ -1,5 +1,6 @@
-package com.example.smartshopping.domain.user
+package com.example.smartshopping.domain.service
 
+import com.example.smartshopping.domain.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service

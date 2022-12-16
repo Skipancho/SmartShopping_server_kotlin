@@ -1,7 +1,11 @@
-package com.example.smartshopping.domain.purchase
+package com.example.smartshopping.domain.service
 
 import com.example.smartshopping.common.SmartShoppingException
 import com.example.smartshopping.domain.auth.UserContextHolder
+import com.example.smartshopping.domain.repository.PurchaseRepository
+import com.example.smartshopping.domain.request.PurchaseRequest
+import com.example.smartshopping.domain.request.toPurchaseRecord
+import com.example.smartshopping.entity.PurchaseRecord
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
