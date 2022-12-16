@@ -23,7 +23,7 @@ class PurchaseApiController @Autowired constructor(
 
     @PostMapping("/purchase")
     fun register(
-        @RequestBody request: PurchaseRequest
+        @RequestBody request: List<PurchaseRequest>
     ) = ApiResponse.ok(
         purchaseService.register(request)
     )
