@@ -1,10 +1,10 @@
 package com.example.smartshopping.presentation.controller
 
 import com.example.smartshopping.common.ApiResponse
-import com.example.smartshopping.domain.auth.signin.SigninRequest
-import com.example.smartshopping.domain.auth.signin.SigninService
-import com.example.smartshopping.domain.auth.signup.SignupRequest
-import com.example.smartshopping.domain.auth.signup.SignupService
+import com.example.smartshopping.domain.request.SigninRequest
+import com.example.smartshopping.domain.service.SigninService
+import com.example.smartshopping.domain.request.SignupRequest
+import com.example.smartshopping.domain.service.SignupService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
