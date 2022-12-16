@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.product.registration
+package com.example.smartshopping.domain.request
 
 data class ProductRegistrationRequest(
     val name : String,

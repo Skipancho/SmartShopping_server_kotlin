@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.auth.signup
+package com.example.smartshopping.domain.request
 
 data class SignupRequest(
     val userId : String,

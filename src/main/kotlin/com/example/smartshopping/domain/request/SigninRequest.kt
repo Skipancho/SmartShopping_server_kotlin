@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.auth.signin
+package com.example.smartshopping.domain.request
 
 data class SigninRequest(
     val userId : String,

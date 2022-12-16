@@ -1,4 +1,4 @@
-package com.example.smartshopping.domain.review
+package com.example.smartshopping.domain.request
 
 data class ReviewRequest(
     val productId : Long,

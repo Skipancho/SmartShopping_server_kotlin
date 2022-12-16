@@ -1,4 +1,6 @@
-package com.example.smartshopping.domain.purchase
+package com.example.smartshopping.domain.request
+
+import com.example.smartshopping.entity.PurchaseRecord
 
 data class PurchaseRequest(
     var productId: Long,
