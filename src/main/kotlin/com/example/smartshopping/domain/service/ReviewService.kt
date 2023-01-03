@@ -19,43 +19,36 @@ class ReviewService @Autowired constructor(
 ) {
 
     fun getReviews(
-        userCode : Long?,
-        productId : Long?
+        productId: Long?
     ): List<ReviewResponse> {
+        val userCode = userContextHolder.userCode
         val condition = ReviewSearchCondition(userCode != null, productId != null)
-        val reviews = when(condition){
+        val reviews = when (condition) {
             USER_CODE_SEARCH -> reviewRepository.findByUserCodeOrderByIdDesc(userCode)
             PRODUCT_ID_SEARCH -> reviewRepository.findByProductIdOrderByIdDesc(productId)
-            else ->throw IllegalArgumentException("리뷰 검색 조건 오류")
+            else -> throw IllegalArgumentException("리뷰 검색 조건 오류")
         }
 
         val responses = ArrayList<ReviewResponse>()
 
-        for (review in reviews){
-            val nickName = review.userCode?.let {
-                userService.find(it)?.nickName
-            } ?: ""
-            val productname = review.productId?.let{
-                productService.get(it)?.name
-            } ?: ""
-
-            responses.add(ReviewResponse(nickName,productname,review.score,review.reviewText,review.updatedAt!!))
+        for (review in reviews) {
+            responses.add(review.toReviewResponse())
         }
         return responses
     }
 
     fun Review.toReviewResponse(): ReviewResponse {
+        val reviewId = id ?: throw SmartShoppingException("리뷰 정보 없음")
         val nickName = userCode?.let {
             userService.find(it)?.nickName
         } ?: throw SmartShoppingException("사용자 정보 없음")
-        val productName = productId?.let {
-            productService.get(it)?.name
-        } ?: throw SmartShoppingException("상품 정보 없음")
+        val productName = productService.get(productId)?.name
+            ?: throw SmartShoppingException("상품 정보 없음")
 
-        return ReviewResponse(nickName,productName,score,reviewText,updatedAt!!)
+        return ReviewResponse(reviewId, purchaseId, nickName, productName, score, reviewText, updatedAt!!)
     }
 
-    fun get(id : Long) = reviewRepository.findByIdOrNull(id)
+    fun get(id: Long) = reviewRepository.findByIdOrNull(id)
 
     fun register(request: ReviewRequest) =
         userContextHolder.userCode?.let { userCode ->
@@ -66,16 +59,16 @@ class ReviewService @Autowired constructor(
     private fun save(review: Review) = reviewRepository.save(review)
 
     data class ReviewSearchCondition(
-        val userCodeIsNotNull : Boolean,
-        val productIdIsNotNull : Boolean
+        val userCodeIsNotNull: Boolean,
+        val productIdIsNotNull: Boolean
     )
 
-    companion object{
-        val USER_CODE_SEARCH = ReviewSearchCondition(true, false)
-        val PRODUCT_ID_SEARCH = ReviewSearchCondition(false, true)
+    companion object {
+        val USER_CODE_SEARCH = ReviewSearchCondition(userCodeIsNotNull = true, productIdIsNotNull = false)
+        val PRODUCT_ID_SEARCH = ReviewSearchCondition(userCodeIsNotNull = false, productIdIsNotNull = true)
     }
 }
 
 private fun ReviewRequest.toReview(
     userCode: Long
-) = Review(userCode, productId, score, reviewText)
+) = Review(userCode, productId, purchaseId, score, reviewText)

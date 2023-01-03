@@ -7,7 +7,8 @@ import javax.persistence.Entity
 @Entity(name = "review")
 class Review(
     var userCode : Long? = null,
-    var productId : Long? = null,
+    var productId : Long,
+    var purchaseId : Long,
     var score : Int,
     @Column(length = 500)
     var reviewText : String,
