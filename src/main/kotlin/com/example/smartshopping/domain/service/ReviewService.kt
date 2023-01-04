@@ -50,11 +50,14 @@ class ReviewService @Autowired constructor(
 
     fun get(id: Long) = reviewRepository.findByIdOrNull(id)
 
-    fun register(request: ReviewRequest) =
+    fun getByPurchaseId(purchaseId : Long?) = reviewRepository.findByPurchaseId(purchaseId)
+
+    fun register(request: ReviewRequest) {
         userContextHolder.userCode?.let { userCode ->
             request.toReview(userCode)
                 .run(::save)
         } ?: throw SmartShoppingException("사용자 정보 없음")
+    }
 
     private fun save(review: Review) = reviewRepository.save(review)
 
