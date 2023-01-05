@@ -13,13 +13,23 @@ class ReviewApiController @Autowired constructor(
 ) {
     @GetMapping("/reviews")
     fun getReview(
-        @RequestParam(required = false) productId : Long?
+        @RequestParam(required = false) productId: Long?
     ) = reviewService
         .getReviews(productId)
-        .let { ApiResponse.ok(it)}
+        .let { ApiResponse.ok(it) }
 
     @PostMapping("/review")
     fun writeReview(
         @RequestBody reviewRequest: ReviewRequest
     ) = ApiResponse.ok(reviewService.register(reviewRequest))
+
+    @PutMapping("/review")
+    fun updateReview(
+        @RequestBody reviewRequest: ReviewRequest
+    ) = ApiResponse.ok(reviewService.update(reviewRequest))
+
+    @DeleteMapping("/review")
+    fun deleteReview(
+        @RequestParam reviewId: Long
+    ) = ApiResponse.ok(reviewService.delete(reviewId))
 }

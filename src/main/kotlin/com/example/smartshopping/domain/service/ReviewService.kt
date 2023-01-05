@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service
 @Service
 class ReviewService @Autowired constructor(
     private val userService: UserService,
-    private val productService: ProductService,
     private val reviewRepository: ReviewRepository,
     private val userContextHolder: UserContextHolder
 ) {
@@ -42,21 +41,34 @@ class ReviewService @Autowired constructor(
         val nickName = userCode?.let {
             userService.find(it)?.nickName
         } ?: throw SmartShoppingException("사용자 정보 없음")
-        val productName = productService.get(productId)?.name
-            ?: throw SmartShoppingException("상품 정보 없음")
 
-        return ReviewResponse(reviewId, purchaseId, nickName, productName, score, reviewText, updatedAt!!)
+        return ReviewResponse(reviewId, purchaseId, nickName, productId, score, reviewText, updatedAt!!)
     }
 
     fun get(id: Long) = reviewRepository.findByIdOrNull(id)
 
-    fun getByPurchaseId(purchaseId : Long?) = reviewRepository.findByPurchaseId(purchaseId)
+    fun getByPurchaseId(purchaseId: Long?) = reviewRepository.findByPurchaseId(purchaseId)
 
     fun register(request: ReviewRequest) {
         userContextHolder.userCode?.let { userCode ->
             request.toReview(userCode)
                 .run(::save)
         } ?: throw SmartShoppingException("사용자 정보 없음")
+    }
+
+    fun update(request: ReviewRequest) {
+        val review = reviewRepository.findByPurchaseId(request.purchaseId)
+        review?.run {
+            reviewText = request.reviewText
+            score = request.score
+            save(this)
+        } ?: register(request)
+    }
+
+    fun delete(id: Long) {
+        reviewRepository.findByIdOrNull(id)?.let {
+            reviewRepository.delete(it)
+        }
     }
 
     private fun save(review: Review) = reviewRepository.save(review)
