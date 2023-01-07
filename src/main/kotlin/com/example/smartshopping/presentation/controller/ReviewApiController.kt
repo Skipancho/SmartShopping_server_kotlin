@@ -12,10 +12,17 @@ class ReviewApiController @Autowired constructor(
     private val reviewService: ReviewService
 ) {
     @GetMapping("/reviews")
-    fun getReview(
+    fun getReviews(
         @RequestParam(required = false) productId: Long?
     ) = reviewService
         .getReviews(productId)
+        .let { ApiResponse.ok(it) }
+
+    @GetMapping("/review")
+    fun getReview(
+        @RequestParam reviewId : Long
+    ) = reviewService
+        .get(reviewId)
         .let { ApiResponse.ok(it) }
 
     @PostMapping("/review")

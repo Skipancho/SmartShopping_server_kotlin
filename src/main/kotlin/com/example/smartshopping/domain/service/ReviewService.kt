@@ -45,7 +45,7 @@ class ReviewService @Autowired constructor(
         return ReviewResponse(reviewId, purchaseId, nickName, productId, score, reviewText, updatedAt!!)
     }
 
-    fun get(id: Long) = reviewRepository.findByIdOrNull(id)
+    fun get(id: Long) = reviewRepository.findByIdOrNull(id)?.toReviewResponse() ?: throw SmartShoppingException("리뷰 정보 없음")
 
     fun getByPurchaseId(purchaseId: Long?) = reviewRepository.findByPurchaseId(purchaseId)
 
