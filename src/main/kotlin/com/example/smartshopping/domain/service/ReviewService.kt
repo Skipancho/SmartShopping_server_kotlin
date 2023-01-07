@@ -80,7 +80,7 @@ class ReviewService @Autowired constructor(
 
     companion object {
         val USER_CODE_SEARCH = ReviewSearchCondition(userCodeIsNotNull = true, productIdIsNotNull = false)
-        val PRODUCT_ID_SEARCH = ReviewSearchCondition(userCodeIsNotNull = false, productIdIsNotNull = true)
+        val PRODUCT_ID_SEARCH = ReviewSearchCondition(userCodeIsNotNull = true, productIdIsNotNull = true)
     }
 }
 
