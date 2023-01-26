@@ -21,7 +21,6 @@ class ProductApiController @Autowired constructor(
     private val productService : ProductService,
     private val productRegistrationService: ProductRegistrationService,
     private val productImageService: ProductImageService,
-    private val reviewService: ReviewService
 ){
     @GetMapping("/products")
     fun search(
@@ -58,18 +57,4 @@ class ProductApiController @Autowired constructor(
     fun getProductByBarcode(@PathVariable barcode : Long) = productService.getByBarcode(barcode)?.let {
         ApiResponse.ok(it.toProductResponse())
     } ?: throw SmartShoppingException("상품 정보를 찾을 수 없습니다.")
-
-    @GetMapping("/reviews")
-    fun getReview(
-        @RequestParam(required = false) userCode : Long?,
-        @RequestParam(required = false) productId : Long?
-    ) = reviewService
-        .getReviews(userCode, productId)
-        .let {ApiResponse.ok(it)}
-
-    @PostMapping("/review")
-    fun writeReview(
-        @RequestBody reviewRequest: ReviewRequest
-    ) = ApiResponse.ok(reviewService.register(reviewRequest))
-
 }
