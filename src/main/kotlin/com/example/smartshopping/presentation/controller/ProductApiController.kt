@@ -3,13 +3,11 @@ package com.example.smartshopping.presentation.controller
 import com.example.smartshopping.common.ApiResponse
 import com.example.smartshopping.common.SmartShoppingException
 import com.example.smartshopping.domain.request.ProductRegistrationRequest
-import com.example.smartshopping.domain.request.ReviewRequest
 import com.example.smartshopping.domain.response.toProductListItemResponse
 import com.example.smartshopping.domain.response.toProductResponse
 import com.example.smartshopping.domain.service.ProductImageService
 import com.example.smartshopping.domain.service.ProductRegistrationService
 import com.example.smartshopping.domain.service.ProductService
-import com.example.smartshopping.domain.service.ReviewService
 import com.example.smartshopping.entity.Product
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -43,9 +41,9 @@ class ProductApiController @Autowired constructor(
 
     @PostMapping("/image")
     fun uploadImage(
-        @RequestBody imageFile : MultipartFile
+        image : MultipartFile
     ) = ApiResponse.ok(
-        productImageService.uploadImage(imageFile)
+        productImageService.uploadImage(image).productImageId
     )
 
     @GetMapping("/products/{id}")
