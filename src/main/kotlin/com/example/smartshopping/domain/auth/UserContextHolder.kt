@@ -1,6 +1,6 @@
 package com.example.smartshopping.domain.auth
 
-import com.example.smartshopping.domain.user.UserRepository
+import com.example.smartshopping.domain.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
