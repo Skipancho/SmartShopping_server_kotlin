@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse
 @Component
 class TokenValidationInterceptor @Autowired constructor(
     private val userContextHolder: UserContextHolder
-) : HandlerInterceptor{
+) : HandlerInterceptor {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -44,7 +44,7 @@ class TokenValidationInterceptor @Autowired constructor(
         token: String,
         response: HttpServletResponse
     ) = try {
-        val jwt = when(grantType) {
+        val jwt = when (grantType) {
             GRANT_TYPE_REFRESH -> JWTUtil.verifyRefresh(token)
             else -> JWTUtil.verify(token)
         }
@@ -80,7 +80,6 @@ class TokenValidationInterceptor @Autowired constructor(
             "POST" to "/api/v1/users",
             "POST" to "/api/v1/users/id",
             "POST" to "/api/v1/users/nickname"
-
         )
     }
 }

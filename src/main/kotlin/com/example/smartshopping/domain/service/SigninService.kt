@@ -15,12 +15,12 @@ class SigninService @Autowired constructor(
     private val userRepository: UserRepository
 ) {
 
-    fun signin(signinRequest: SigninRequest) : SigninResponse {
+    fun signin(signinRequest: SigninRequest): SigninResponse {
         val user = userRepository
             .findByUserId(signinRequest.userId.lowercase())
-            ?:throw SmartShoppingException("로그인 정보를 확인해주세요.")
+            ?: throw SmartShoppingException("로그인 정보를 확인해주세요.")
 
-        if (isNotValidPassword(signinRequest.password, user.password)){
+        if (isNotValidPassword(signinRequest.password, user.password)) {
             throw SmartShoppingException("로그인 정보를 확인해주세요.")
         }
 
@@ -31,15 +31,15 @@ class SigninService @Autowired constructor(
     private fun isNotValidPassword(
         plain: String,
         hashed: String
-    ) = BCrypt.checkpw(plain,hashed).not()
+    ) = BCrypt.checkpw(plain, hashed).not()
 
-    private fun responseWithTokens(user: User) = user.id?.let{
-            userCode -> SigninResponse(
-        JWTUtil.createToken(user.userId),
-        JWTUtil.createRefreshToken(user.userId),
-        user.nickName,
-        userCode,
-        user.name
-    )
+    private fun responseWithTokens(user: User) = user.id?.let { userCode ->
+        SigninResponse(
+            JWTUtil.createToken(user.userId),
+            JWTUtil.createRefreshToken(user.userId),
+            user.nickName,
+            userCode,
+            user.name
+        )
     } ?: throw IllegalStateException("userCode 없음.")
 }
